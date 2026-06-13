@@ -1,0 +1,6 @@
+{
+  "name": "DJ Eric Le Bon",
+  "description": "Official website for DJ Eric Le Bon, showcasing latest music mixes, event calendar, and booking requests.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
