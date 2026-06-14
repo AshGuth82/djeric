@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Turntable from './components/Turntable';
 import MixPlayer from './components/MixPlayer';
 import BookingForm from './components/BookingForm';
+import MixcloudFeed from './components/MixcloudFeed';
 import { Shield, Sparkles, Disc, Radio, Sliders, Calendar, Mail, FileText, Youtube, Music, Instagram } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -145,7 +146,12 @@ export default function App() {
               Archive
             </button>
 
-
+            <button
+              onClick={() => handleScrollToSection('mixcloud-section')}
+              className="hover:text-white cursor-pointer transition-colors"
+            >
+              Broadcast
+            </button>
 
             <button
               onClick={() => handleScrollToSection('bookings-section')}
@@ -219,7 +225,10 @@ export default function App() {
           />
         </section>
 
-
+        {/* MIXCLOUD PROFILE INTEGRATION */}
+        <section className="scroll-mt-28" id="mixcloud-section">
+          <MixcloudFeed />
+        </section>
 
         {/* FORM INQUIRIES & CONTACTS */}
         <section className="scroll-mt-28" id="bookings-section">
