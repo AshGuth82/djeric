@@ -10,7 +10,7 @@ export default function MixcloudFeed() {
         <div>
           <span className="font-mono text-[9px] font-bold text-white/40 tracking-[0.4em] uppercase flex items-center gap-2">
             <Radio className="w-3 h-3 text-white/60 animate-pulse" />
-            <span>03 / CLOUD ARCHIVE SYNDICATION</span>
+            <span>02 / CLOUD ARCHIVE SYNDICATION</span>
           </span>
           <h3 className="text-3xl font-black font-display text-white mt-2 uppercase tracking-tight">
             MIXCLOUD BROADCAST DECK

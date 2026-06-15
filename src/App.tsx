@@ -1,98 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Mix } from './types';
+import React, { useState } from 'react';
 import Hero from './components/Hero';
 import Turntable from './components/Turntable';
-import MixPlayer from './components/MixPlayer';
 import BookingForm from './components/BookingForm';
 import MixcloudFeed from './components/MixcloudFeed';
 import { Shield, Sparkles, Disc, Radio, Sliders, Calendar, Mail, FileText, Youtube, Music, Instagram } from 'lucide-react';
 import { motion } from 'motion/react';
 
-// Static Premium Mixes Showcase Data
-const INITIAL_MIXES: Mix[] = [
-  {
-    id: 'mix-sunset-ibiza',
-    title: 'Neon Horizon Sunset (Live at Cafe Del Mar)',
-    genre: 'Deep House / Organic',
-    duration: '58:24',
-    bpm: 121,
-    releaseDate: 'May 2026',
-    description: 'Evocative Sunset session. Features hypnotic warm synth pads, rhythmic sub-bass grooves, and a vocal transition of timeless French underground melodies.',
-    audioUrl: '',
-    tracklist: [
-      'Eric Le Bon - Intro Chords & Organic Waves (0:00)',
-      'Black Coffee - Gardens of Eden (Le Bon Remix) (8:45)',
-      'Rampa, Keinemusik - Les Gouttes (Extended Blend) (18:12)',
-      'Guy Gerber - Sunset Shadows (Vocal edit) (32:40)',
-      'Stimming - Alpe Lusia (48:15)',
-      'Eric Le Bon - Outro Sunrise (56:00)'
-    ]
-  },
-  {
-    id: 'mix-berlin-techno',
-    title: 'Nocturnal Pulse (Watergate Berlin Live set)',
-    genre: 'Melodic Techno',
-    duration: '1:12:15',
-    bpm: 126,
-    releaseDate: 'April 2026',
-    description: 'A deep, cerebral modular techno trek captured raw in the legendary glassroom overlooking the Spree river. Dark, modular, and industrial.',
-    audioUrl: '',
-    tracklist: [
-      'Stephan Bodzin - Tron (Live performance intro) (0:00)',
-      'Tale Of Us - Astral Echo (11:20)',
-      'Maceo Plex - Conjure Dreams (Berlin Mix) (24:45)',
-      'Eric Le Bon - Quantum Resonance (Synthesizer Jam) (39:10)',
-      'Ben Böhmer - Beyond Beliefs (Progressive beat) (52:30)',
-      'ARTBAT - Horizon Echoes (1:07:45)'
-    ]
-  },
-  {
-    id: 'mix-disco-vocals',
-    title: 'Sultry Cabaret & French Nu-Disco Session',
-    genre: 'Nu-Disco / French-Touch',
-    duration: '44:10',
-    bpm: 118,
-    releaseDate: 'February 2026',
-    description: 'A tribute to the iconic French-Touch disco house scene. Highly energetic brass chords, funky bass guitars, and filtered 909 drum machines.',
-    audioUrl: '',
-    tracklist: [
-      'Cassius - Feeling For You (Eric Le Bon Edit) (0:00)',
-      'Daft Punk - Voyager (French Retro Remaster) (6:40)',
-      'Folamour - Devoted To Yesterdays (15:20)',
-      'Breakbot - Baby I\'m Yours (Instrumental Cut) (24:10)',
-      'Fred Falke - Love Sunset (35:50)'
-    ]
-  },
-  {
-    id: 'mix-afro-shamanic',
-    title: 'Tribal Shamanic Afro-House Journey',
-    genre: 'Afro-House',
-    duration: '1:04:30',
-    bpm: 123,
-    releaseDate: 'January 2026',
-    description: 'Warm hand-percussions and wooden flutes woven with dark analog synthesis to create a deeply grounding, rhythmic spiritual dancefloor flow.',
-    audioUrl: '',
-    tracklist: [
-      'Pablo Fierro - Tembo (Tribal Intro) (0:00)',
-      '&ME - Garden (Shamanic rework) (12:30)',
-      'Moojo, Caiiro - Here We Are (26:40)',
-      'Ameme - Kaleta (Vocal blend) (40:15)',
-      'Eric Le Bon - Conga Drums Live Jam (53:45)'
-    ]
-  }
-];
-
-
-
 export default function App() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [activeMix, setActiveMix] = useState<Mix>(INITIAL_MIXES[0]);
-  const [currentBpm, setCurrentBpm] = useState<number>(activeMix.bpm);
-
-  // Sync Turntable BPM when active mix changes
-  useEffect(() => {
-    setCurrentBpm(activeMix.bpm);
-  }, [activeMix]);
+  const [currentBpm, setCurrentBpm] = useState<number>(124);
 
   const handleTogglePlay = (forceState?: boolean) => {
     if (forceState !== undefined) {
@@ -140,15 +56,8 @@ export default function App() {
             </button>
             
             <button
-              onClick={() => handleScrollToSection('mixes-section')}
-              className="hover:text-white cursor-pointer transition-colors"
-            >
-              Archive
-            </button>
-
-            <button
               onClick={() => handleScrollToSection('mixcloud-section')}
-              className="hover:text-white cursor-pointer transition-colors"
+              className="hover:text-white cursor-pointer transition-colors animate-pulse text-white/90"
             >
               Broadcast
             </button>
@@ -203,28 +112,6 @@ export default function App() {
           />
         </section>
 
-        {/* LATEST RECORDED MIXES CONTAINER */}
-        <section className="scroll-mt-28 space-y-4" id="mixes-section">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-3 border-b border-white/10 pb-6">
-            <div>
-              <span className="font-mono text-[9px] font-bold text-white/40 tracking-[0.4em] uppercase">
-                02 / ARCHIVE SELECTIONS
-              </span>
-              <h2 className="text-3xl font-black font-display text-white mt-1.5 uppercase tracking-tight">
-                LATEST RECORDINGS
-              </h2>
-            </div>
-          </div>
-          
-          <MixPlayer
-            mixes={INITIAL_MIXES}
-            activeMix={activeMix}
-            setActiveMix={setActiveMix}
-            isPlaying={isPlaying}
-            onTogglePlay={handleTogglePlay}
-          />
-        </section>
-
         {/* MIXCLOUD PROFILE INTEGRATION */}
         <section className="scroll-mt-28" id="mixcloud-section">
           <MixcloudFeed />
@@ -234,7 +121,7 @@ export default function App() {
         <section className="scroll-mt-28" id="bookings-section">
           <div className="border-b border-white/10 pb-6 mb-8">
             <span className="font-mono text-[9px] font-bold text-white/40 tracking-[0.4em] uppercase">
-              04 / WORLD ENGAGEMENTS
+              03 / WORLD ENGAGEMENTS
             </span>
             <h2 className="text-3xl font-black font-display text-white mt-1.5 uppercase tracking-tight">
               BOOKING ENQUIRIES
